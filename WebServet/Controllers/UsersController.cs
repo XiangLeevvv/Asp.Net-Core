@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
-//using System.Web.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nancy.Json;
 using WebServet.Models;
+using localLib;
+
 
 namespace WebServet.Controllers
 {
@@ -45,23 +41,23 @@ namespace WebServet.Controllers
             public LoginInfo data { get; set; }
         }
 
-        public class ResultToJson
-        {
-            public static string toJson(object obj)
-            {
-                string str;
-                if (obj is string || obj is char)
-                {
-                    str = obj.ToString();
-                }
-                else
-                {
-                    JavaScriptSerializer serializer = new JavaScriptSerializer();
-                    str = serializer.Serialize(obj);
-                }
-                return str;
-            }
-        }
+        //public class ResultToJson
+        //{
+        //    public static string toJson(object obj)
+        //    {
+        //        string str;
+        //        if (obj is string || obj is char)
+        //        {
+        //            str = obj.ToString();
+        //        }
+        //        else
+        //        {
+        //            JavaScriptSerializer serializer = new JavaScriptSerializer();
+        //            str = serializer.Serialize(obj);
+        //        }
+        //        return str;
+        //    }
+        //}
 
         // GET: api/Users/5
         [HttpPost]

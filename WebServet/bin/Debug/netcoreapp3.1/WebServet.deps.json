@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v3.1": {
       "WebServet/1.0.0": {
         "dependencies": {
+          "Brandleespackage": "1.0.0",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.InMemory": "3.1.5",
@@ -36,6 +37,7 @@
           "Ninject": "3.3.4",
           "Swashbuckle.AspNetCore": "5.5.0",
           "Swashbuckle.Core": "5.6.0",
+          "localLib": "1.0.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -319,6 +321,7 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
+      "Brandleespackage/1.0.0": {},
       "Google.Protobuf/3.6.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -2757,6 +2760,17 @@
           "ref/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "localLib/1.0.0.0": {
+        "runtime": {
+          "localLib.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "localLib.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Antiforgery.dll": {}
@@ -4326,6 +4340,13 @@
       "path": "bouncycastle.netcore/1.8.3",
       "hashPath": "bouncycastle.netcore.1.8.3.nupkg.sha512"
     },
+    "Brandleespackage/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-09yAQ4GeOaUciUcHW/0QUY91Z9HSORF5XkEjbEMgWAjQKnM5ZXwOLH9KgfhwTutdOtvOvypgsX0N6ywuDkauAA==",
+      "path": "brandleespackage/1.0.0",
+      "hashPath": "brandleespackage.1.0.0.nupkg.sha512"
+    },
     "Google.Protobuf/3.6.1": {
       "type": "package",
       "serviceable": true,
@@ -5690,6 +5711,11 @@
       "sha512": "sha512-Zm2BdeanuncYs3NhCj4c9e1x3EXFzFBVv2wPEc/Dj4ZbI9R8ecLSR5frAsx4zJCPBtKQreQ7Q/KxJEohJZbfzA==",
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
+    },
+    "localLib/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

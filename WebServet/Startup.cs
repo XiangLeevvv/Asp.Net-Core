@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore;
 using WebServet.Models;
 using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace WebServet
 {
@@ -56,6 +57,8 @@ namespace WebServet
             services.AddCors(option => option.AddPolicy("cors", policy => policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins(new[] { "http://localhost:8080" })));
 
             services.AddDbContext<UserContext>();
+
+            //string[] assemblyArray = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "localLib.dll");
 
             // Ìí¼ÓSwagger
             services.AddSwaggerGen(c =>

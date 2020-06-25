@@ -168,6 +168,8 @@ C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\obj\Debug\netco
 C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
 C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\bin\Debug\netcoreapp3.1\Nancy.dll
+C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\bin\Debug\netcoreapp3.1\localLib.dll
+C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\bin\Debug\netcoreapp3.1\localLib.pdb
 C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\obj\Debug\netcoreapp3.1\WebServet.csproj.CoreCompileInputs.cache
 C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\obj\Debug\netcoreapp3.1\WebServet.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\82621\Desktop\.Net_户县锋2020\期末项目\WebServet\obj\Debug\netcoreapp3.1\WebServet.MvcApplicationPartsAssemblyInfo.cache

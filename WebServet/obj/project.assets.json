@@ -16,6 +16,9 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
+      "Brandleespackage/1.0.0": {
+        "type": "package"
+      },
       "Google.Protobuf/3.6.1": {
         "type": "package",
         "dependencies": {
@@ -3209,6 +3212,17 @@
         "lib/netstandard2.0/BouncyCastle.Crypto.xml",
         "lib/xamarinios/BouncyCastle.Crypto.dll",
         "lib/xamarinios/BouncyCastle.Crypto.xml"
+      ]
+    },
+    "Brandleespackage/1.0.0": {
+      "sha512": "09yAQ4GeOaUciUcHW/0QUY91Z9HSORF5XkEjbEMgWAjQKnM5ZXwOLH9KgfhwTutdOtvOvypgsX0N6ywuDkauAA==",
+      "type": "package",
+      "path": "brandleespackage/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "brandleespackage.1.0.0.nupkg.sha512",
+        "brandleespackage.nuspec"
       ]
     },
     "Google.Protobuf/3.6.1": {
@@ -9926,6 +9940,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Brandleespackage >= 1.0.0",
       "Microsoft.AspNet.WebApi.Core >= 5.2.7",
       "Microsoft.EntityFrameworkCore >= 3.1.5",
       "Microsoft.EntityFrameworkCore.InMemory >= 3.1.5",
@@ -9977,6 +9992,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Brandleespackage": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "Microsoft.AspNet.WebApi.Core": {
             "target": "Package",
             "version": "[5.2.7, )"
