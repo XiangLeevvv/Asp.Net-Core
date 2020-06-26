@@ -357,3 +357,5 @@ C:\Users\82621\Desktop\.net\Asp.Net-Core\WebServet\bin\Debug\netcoreapp3.1\local
 C:\Users\82621\Desktop\.net\Asp.Net-Core\WebServet\obj\Debug\netcoreapp3.1\WebServet.csproj.CoreCompileInputs.cache
 C:\Users\82621\Desktop\.net\Asp.Net-Core\WebServet\obj\Debug\netcoreapp3.1\WebServet.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\82621\Desktop\.net\Asp.Net-Core\WebServet\obj\Debug\netcoreapp3.1\WebServet.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\82621\Desktop\.net\Asp.Net-Core\WebServet\bin\Debug\netcoreapp3.1\CLRDll.dll
+C:\Users\82621\Desktop\.net\Asp.Net-Core\WebServet\bin\Debug\netcoreapp3.1\CLRDll.pdb

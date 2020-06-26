@@ -37,6 +37,7 @@
           "Swashbuckle.AspNetCore": "5.5.0",
           "Swashbuckle.Core": "5.6.0",
           "localLib": "1.1.1",
+          "CLRDll": "1.0.7482.24548",
           "Interop.COMLib": "1.0.0.0",
           "Interop.ATLLib": "1.0.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -2772,6 +2773,17 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
+        }
+      },
+      "CLRDll/1.0.7482.24548": {
+        "runtime": {
+          "CLRDll.dll": {
+            "assemblyVersion": "1.0.7482.24548",
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "compile": {
+          "CLRDll.dll": {}
         }
       },
       "Interop.COMLib/1.0.0.0": {
@@ -5736,6 +5748,11 @@
       "sha512": "sha512-Zm2BdeanuncYs3NhCj4c9e1x3EXFzFBVv2wPEc/Dj4ZbI9R8ecLSR5frAsx4zJCPBtKQreQ7Q/KxJEohJZbfzA==",
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
+    },
+    "CLRDll/1.0.7482.24548": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     },
     "Interop.COMLib/1.0.0.0": {
       "type": "reference",

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WebServet.Models;
 using COMLib;
 using localLib;
+using CLRDll;
 
 
 namespace WebServet.Controllers
@@ -90,7 +91,10 @@ namespace WebServet.Controllers
 
             MyComClass f = new MyComClass();
             System.Diagnostics.Debug.WriteLine(f.Add(1,2));
-            
+
+            test t = new test();
+            System.Diagnostics.Debug.WriteLine(t.GetCount());
+
 
             if (string.IsNullOrEmpty(loginInfo.name) || string.IsNullOrEmpty(loginInfo.password))
             {
