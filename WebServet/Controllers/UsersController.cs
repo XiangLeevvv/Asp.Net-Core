@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Nancy.Json;
 using WebServet.Models;
+using COMLib;
 using localLib;
 
 
@@ -41,6 +41,13 @@ namespace WebServet.Controllers
             public LoginInfo data { get; set; }
         }
 
+        public class UserInfo
+        {
+            public int user_id { get; set; }
+            public string nickname { get; set; }
+            public string avatar_url { get; set; }
+        }
+
         //public class ResultToJson
         //{
         //    public static string toJson(object obj)
@@ -60,11 +67,30 @@ namespace WebServet.Controllers
         //}
 
         // GET: api/Users/5
+
+        //[HttpGet("{user_id}")]
+        //[Route("getUserPublicInfo")]
+        //public async Task<IActionResult> getUserPublicInfo(int user_id)
+        //{
+        //    var user = await _context.user.FindAsync(user_id);
+
+        //    if (user == null)
+        //    {
+
+        //    }
+
+
+        //}
+
         [HttpPost]
         [Route("signIn")]
         public async Task<IActionResult> SignIn([FromBody]LoginInfo loginInfo)
         {
             LoginResponse response;
+
+            MyComClass f = new MyComClass();
+            System.Diagnostics.Debug.WriteLine(f.Add(1,2));
+            
 
             if (string.IsNullOrEmpty(loginInfo.name) || string.IsNullOrEmpty(loginInfo.password))
             {

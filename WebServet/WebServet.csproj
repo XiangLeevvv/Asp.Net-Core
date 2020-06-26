@@ -2,10 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Brandleespackage" Version="1.0.0" />
+    <COMReference Include="COMLib.dll">
+      <Guid>294150c6-c0ea-4ded-b987-4ed865d60eda</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="ATLLib.dll">
+      <Guid>fed8c924-6a95-4a61-bf8d-f552e4d7a7fb</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="localLib" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.5" />
@@ -21,12 +45,6 @@
     <PackageReference Include="Ninject" Version="3.3.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
     <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="localLib">
-      <HintPath>..\localLib\bin\Debug\netstandard2.0\localLib.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

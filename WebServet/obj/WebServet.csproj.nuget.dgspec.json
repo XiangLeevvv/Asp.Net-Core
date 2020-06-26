@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\WebServet.csproj": {}
+    "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\WebServet.csproj": {
+    "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\WebServet.csproj",
+        "projectUniqueName": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj",
         "projectName": "WebServet",
-        "projectPath": "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\WebServet.csproj",
+        "projectPath": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj",
         "packagesPath": "C:\\Users\\82621\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\obj\\",
+        "outputPath": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\82621\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,10 +38,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Brandleespackage": {
-              "target": "Package",
-              "version": "[1.0.0, )"
-            },
             "Microsoft.AspNet.WebApi.Core": {
               "target": "Package",
               "version": "[5.2.7, )"
@@ -91,6 +87,10 @@
             "Swashbuckle.Core": {
               "target": "Package",
               "version": "[5.6.0, )"
+            },
+            "localLib": {
+              "target": "Package",
+              "version": "[1.1.1, )"
             }
           },
           "imports": [

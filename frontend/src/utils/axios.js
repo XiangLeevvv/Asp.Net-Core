@@ -26,14 +26,14 @@ function checkString() {
 function post(url, data) {
   return axios({
     method: "POST",
-    url: "http://localhost:14968/" + url,
+    url: "http://localhost:5000/" + url,
     //url: url,
     data: data,
   })
 }
 
 function get(url) {
-  return axios.get("http://localhost:14968/" + url);
+  return axios.get("http://localhost:5000/" + url);
 }
 ///////////////////////////////////////////
 // //getUserPublicInfo
@@ -41,7 +41,7 @@ function getUserPublicInfo(user_id) {
   if (!checkNumber(user_id)) {
     return null;
   }
-  return get("api/User/getUserPublicInfo/" + user_id);
+  return get("api/Users/getUserPublicInfo/" + user_id);
 }
 
 function register(data) {

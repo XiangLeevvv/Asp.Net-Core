@@ -16,9 +16,6 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
-      "Brandleespackage/1.0.0": {
-        "type": "package"
-      },
       "Google.Protobuf/3.6.1": {
         "type": "package",
         "dependencies": {
@@ -66,6 +63,18 @@
         },
         "runtime": {
           "lib/netstandard2.0/K4os.Hash.xxHash.dll": {}
+        }
+      },
+      "localLib/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Nancy": "2.0.0"
+        },
+        "compile": {
+          "lib/localLib.dll": {}
+        },
+        "runtime": {
+          "lib/localLib.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.7": {
@@ -3214,17 +3223,6 @@
         "lib/xamarinios/BouncyCastle.Crypto.xml"
       ]
     },
-    "Brandleespackage/1.0.0": {
-      "sha512": "09yAQ4GeOaUciUcHW/0QUY91Z9HSORF5XkEjbEMgWAjQKnM5ZXwOLH9KgfhwTutdOtvOvypgsX0N6ywuDkauAA==",
-      "type": "package",
-      "path": "brandleespackage/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "brandleespackage.1.0.0.nupkg.sha512",
-        "brandleespackage.nuspec"
-      ]
-    },
     "Google.Protobuf/3.6.1": {
       "sha512": "741fGeDQjixBJaU2j+0CbrmZXsNJkTn/hWbOh4fLVXndHsCclJmWznCPWrJmPoZKvajBvAz3e8ECJOUvRtwjNQ==",
       "type": "package",
@@ -3295,6 +3293,18 @@
         "lib/netstandard1.6/K4os.Hash.xxHash.xml",
         "lib/netstandard2.0/K4os.Hash.xxHash.dll",
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "localLib/1.1.1": {
+      "sha512": "kFx3FQbTAA8JU/2CUQSD64T+jY0rFPrbQ4YSjYAx5v8Fxd3GLzc2IofEB45NjjYUAKKevG5aMCE4O0PncDjU9A==",
+      "type": "package",
+      "path": "locallib/1.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/localLib.dll",
+        "locallib.1.1.1.nupkg.sha512",
+        "locallib.nuspec"
       ]
     },
     "Microsoft.AspNet.WebApi.Client/5.2.7": {
@@ -9940,7 +9950,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Brandleespackage >= 1.0.0",
       "Microsoft.AspNet.WebApi.Core >= 5.2.7",
       "Microsoft.EntityFrameworkCore >= 3.1.5",
       "Microsoft.EntityFrameworkCore.InMemory >= 3.1.5",
@@ -9952,7 +9961,8 @@
       "Nancy >= 2.0.0",
       "Ninject >= 3.3.4",
       "Swashbuckle.AspNetCore >= 5.5.0",
-      "Swashbuckle.Core >= 5.6.0"
+      "Swashbuckle.Core >= 5.6.0",
+      "localLib >= 1.1.1"
     ]
   },
   "packageFolders": {
@@ -9961,11 +9971,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\WebServet.csproj",
+      "projectUniqueName": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj",
       "projectName": "WebServet",
-      "projectPath": "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\WebServet.csproj",
+      "projectPath": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj",
       "packagesPath": "C:\\Users\\82621\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\82621\\Desktop\\.Net_户县锋2020\\期末项目\\WebServet\\obj\\",
+      "outputPath": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\82621\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9992,10 +10002,6 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
-          "Brandleespackage": {
-            "target": "Package",
-            "version": "[1.0.0, )"
-          },
           "Microsoft.AspNet.WebApi.Core": {
             "target": "Package",
             "version": "[5.2.7, )"
@@ -10045,6 +10051,10 @@
           "Swashbuckle.Core": {
             "target": "Package",
             "version": "[5.6.0, )"
+          },
+          "localLib": {
+            "target": "Package",
+            "version": "[1.1.1, )"
           }
         },
         "imports": [
@@ -10070,6 +10080,16 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“.NETCoreApp,Version=v3.1”还原包“localLib 1.1.1”。此包可能与项目不完全兼容。",
+      "libraryId": "localLib",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",
