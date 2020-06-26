@@ -41,7 +41,6 @@ function getUserPublicInfo(user_id) {
   if (!checkNumber(user_id)) {
     return null;
   }
-  console.log(user_id)
   return get("api/Users/getUserPublicInfo/" + user_id);
 }
 
@@ -57,18 +56,19 @@ function signIn(data) {
 //search(searchKey)
 function search(searchKey, startFrom, limitation) {
   var data = {
+    info : searchKey,
     startFrom: startFrom,
     limitation: limitation
   }
   if (!checkString(searchKey)) {
     return null;
   }
-  return post("api/Search/" + searchKey, data);
+  return post("api/posts/queryMessagesContains/", data);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //RELATION
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
-var RELATION = "api/relations/";
+var RELATION = "api/Relation/";
 //followSb(user_id)
 function followSb(user_id, data) {
   if (!checkNumber(user_id)) {
@@ -84,11 +84,10 @@ function queryFollowingFor(user_id, startFrom, limitation) {
   }
 
   var data = {
-    userId: user_id,
     startFrom: startFrom,
     limitation: limitation
   }
-  return post(RELATION + "queryFollowingFor/", data);
+  return post(RELATION + "queryFollowingFor/" + user_id, data);
 }
 //queryFollowersFor(user_id, startFrom, limitation)
 function queryFollowersFor(user_id, startFrom, limitation) {
@@ -97,11 +96,10 @@ function queryFollowersFor(user_id, startFrom, limitation) {
   }
 
   var data = {
-    userId: user_id,
     startFrom: startFrom,
     limitation: limitation
   }
-  return post(RELATION + "queryFollowersFor/", data);
+  return post(RELATION + "queryFollowersFor/" + user_id, data);
 }
 //cancelFollowingTo(user_id)
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
@@ -130,34 +128,36 @@ function if_following_by_me(be_followed_id, data) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //LIKE点赞
 //like(message_id)
-var LIKE = "api/Like/";
+var LIKE = "api/likes/";
 
-//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function like(message_id, data) {
   if (!checkNumber(message_id)) {
     return null;
   }
-  return post(LIKE + "like/" + message_id, data);
+  return post(LIKE + "iLike", data);
 }
 //cancelLike(message_id)
-//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function cancelLike(message_id, data) {
   if (!checkNumber(message_id)) {
     return null;
   }
-  return post(LIKE + "cancel/" + message_id, data);
+  return post(LIKE + "cancel", data);
 }
 //queryLikes(user_id)
-function queryLikes(user_id) {
+function queryLikes(user_id, data) {
   if (!checkNumber(user_id)) {
     return null;
   }
-  return get(
-    LIKE + "query/" + user_id + "?startFrom=" + startFrom + "&limitation=" + limitation
-  )
+  return post(LIKE + "countLike", data)
+}
+
+function isLiked(user_id, data) {
+  if (!checkNumber(user_id)) {
+    return null;
+  }
+  return post(LIKE + "isLike", data)
 }
 //checkUserLikesMessage(user_id, message_id)
-//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function checkUserLikesMessage(data) {
   console.log("调用了checkUserLikesMessage" + data)
   return post(LIKE + "checkUserLikesMessage/", data);
@@ -199,14 +199,14 @@ function queryFollowMessage(startFrom, limitation, userID) {
   var data = {
     startFrom: startFrom,
     limitation: limitation,
-    userID: userID
+    userID: parseInt(userID)
   }
   return post(MESSAGE + "queryFollowMessage", data);
 }
 //sendMessage(formData: {message_content, message_has_image, message_image_count, files})
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function sendMessage(formData) {
-  return post("api/posts/send", formData);
+  return post(MESSAGE + "send", formData);
 }
 //deleteMessage(message_id)
 function deleteMessage(message_id) {
@@ -214,15 +214,18 @@ function deleteMessage(message_id) {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //评论
-var COMMENT = "api/Comment/";
+var COMMENT = "api/comments/";
 
-function queryComment(id, data) {
-  return post(COMMENT + 'queryComments/' + id, data);
+function queryComment(id) {
+  return get(COMMENT + 'queryComment/' + id);
 }
 
-//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
-function addComment(id, data) {
-  return post(COMMENT + 'add/' + id, data);
+function countComment(id) {
+  return get(COMMENT + 'countComment/' + id);
+}
+
+function addComment(data) {
+  return post(COMMENT + 'add', data);
 }
 
 export default {
@@ -237,6 +240,7 @@ export default {
     if_following,
     if_following_by_me,
     like,
+    isLiked,
     cancelLike,
     queryLikes,
     checkUserLikesMessage,
@@ -247,5 +251,6 @@ export default {
     sendMessage,
     deleteMessage,
     queryComment,
+    countComment,
     addComment
 }

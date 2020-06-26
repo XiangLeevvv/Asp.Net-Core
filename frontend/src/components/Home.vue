@@ -442,15 +442,20 @@ ul li{
     sendPostBtnClickEventHandler(){
       this.sendingTwitter = true;
       console.log("点击发送推特", this.editor_content, this.uploadList);
-      var formData = new FormData();
-      formData.append("message_content", this.editor_content);
-      formData.append("userID", this.userID)
+      // var formData = new FormData();
+      // formData.append("message_content", this.editor_content);
+      // formData.append("userID", this.userID)
+      var formData = {
+        "message_content": this.editor_content,
+        "userID": parseInt(this.userID)
+      }
       axios.sendMessage(formData).then(response=>{
         //this.sendingTwitter = false;
         console.log(response);
         if(response.data.message == "success"){
           this.editor_content = "";
           this.uploadList = [];
+          alert("发送成功！")
         }
         this.sendingTwitter = false;
         this.$router.go(0)

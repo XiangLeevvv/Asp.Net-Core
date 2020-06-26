@@ -68,7 +68,7 @@ export default {
       ableShowMore: true,
       isFollowing: new Object(),
       spinShow: false,
-      burl: "http://localhost:14968/"
+      burl: "http://localhost:5000/"
     };
   },
   computed:{
@@ -130,7 +130,6 @@ export default {
           10,
           this.userID
         ).then(Response => {
-
           this.$emit("stop_loading");
           console.log("结束获取")
           this.twiDatas = Response.data.data;

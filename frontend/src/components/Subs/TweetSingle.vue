@@ -206,21 +206,39 @@ export default {
       }
       this.ifShowComment = !this.ifShowComment;
     },
+    getCountLike(){
+      var data = {
+        userID: parseInt(this.userID),
+        messageID: parseInt(this.item.message_id)
+      }
+      axios.queryLikes(this.userID, data).then(Response => {
+        if (Response.data.message == "success") {
+          this.item.message_like_num = Response.data.count
+        }
+        else {
+          this.item.message_like_num = 0
+        }
+      });
+    },
     doLike() {
-      //console.log("like_message_id:", this.item.message_id);
+      this.getCountLike()
+      setTimeout(500)
       if (this.likeByUser == false) {
         this.likeByUser = true;
-        this.item.message_like_num++;
         var data = {
-          userID: this.userID
+          userID: parseInt(this.userID),
+          messageID: parseInt(this.item.message_id)
         }
         axios.like(this.item.message_id, data).then(Response => {
           if (Response.data.message == "success") {
+            this.item.message_like_num++;
           }
-          //失败了就返回来
-          else {
+          else if(Response.data.message == "already"){
+            this.likeByUser = true;
+            alert("已经点赞过了");
+          }
+          else{
             this.likeByUser = false;
-            this.item.message_like_num--;
             alert("点赞失败");
           }
         });
@@ -228,12 +246,12 @@ export default {
         this.likeByUser = false;
         this.item.message_like_num--;
         var data = {
-          userID : this.userID
+          userID: parseInt(this.userID),
+          messageID: parseInt(this.item.message_id)
         }
         axios.cancelLike(this.item.message_id, data).then(Response => {
           if (Response.data.message == "success") {
           }
-          //失败了就返回来
           else {
             this.item.message_like_num++;
             this.item.likeByUser = true;
@@ -244,21 +262,23 @@ export default {
       this.$emit("likeTwi");
     },
     getComment() {
-      let data = {
-        startFrom: this.comments.length,
-        limitation: 10
-      };
-      axios.queryComment(this.item.message_id, data).then(Response => {
+      // let data = {
+      //   startFrom: this.comments.length,
+      //   limitation: 10
+      // };
+      axios.queryComment(this.item.message_id).then(Response => {
         console.log("评论返回" + Response.data)
-        this.comments = Response.data.data;
+        this.comments = Response.data.data
       });
     },
     doSendComment(content) {
       let data = {
+        message_id: parseInt(this.item.message_id),
+        userID: parseInt(this.userID),
         comment_content: content,
-        userID: this.userID
+        sender_id: this.item.message_sender_user_id
       };
-      axios.addComment(this.item.message_id, data).then(Response => {
+      axios.addComment(data).then(Response => {
         if (Response.data.message == "success") {
           this.commentsNum += 1;
           this.commented = true;
@@ -289,10 +309,20 @@ export default {
     }
   },
   created() {
-    // this.collectByUser = this.item.collectByUser;
-    this.likeByUser = this.item.likeByUser;
+    var data = {
+      userID: parseInt(this.userID),
+      messageID: parseInt(this.item.message_id)
+    }
+    axios.isLiked(this.userID, data).then(Response => {
+      this.likeByUser = Response.data.message == "like";
+    });
+    // this.likeByUser = this.item.likeByUser;
     this.followByUser = this.item.followByUser;
-    this.commentsNum = this.item.message_comment_num;
+    // this.commentsNum = this.item.message_comment_num;
+    axios.countComment(this.item.message_id).then(Response => {
+      console.log(Response.data)
+      this.commentsNum = Response.data.count;
+    });
     //求证是否点赞收藏关注
     var data1 = {
       user_id: cookie.getCookie("userID"),
@@ -319,7 +349,6 @@ export default {
     axios.getUserPublicInfo(this.item.message_sender_user_id).then(
       Response => {
         this.userName = Response.data.data.nickname;
-        // this.userAvt = Response.data.data.avatar_url;
       }
     );
 

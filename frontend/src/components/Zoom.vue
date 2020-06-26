@@ -192,6 +192,7 @@ export default {
         _this.followersList = res[2].data.data;
         console.log("这个人的followersList", _this.followersList);
       });
+      alert(this.user)
       axios.getUserPublicInfo(this.user).then(response => {
         this.my_info = response.data.data;
       });
@@ -294,6 +295,7 @@ export default {
       for (var i = 0; i < this.followersList.length; ++i) {
         if (this.followersList[i].user_id != this.user) {
           k.push(this.followersList[i]);
+
         }
       }
       if (val) {
