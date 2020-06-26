@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebServet.Models;
+using localLib;
 
 namespace WebServet.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class postsController : ControllerBase
@@ -18,6 +20,34 @@ namespace WebServet.Controllers
         public postsController(UserContext context)
         {
             _context = context;
+        }
+
+        public class Message
+        {
+            public int userID { get; set; }
+            public string message_content { get; set; }
+        }
+
+        public class messageRes
+        {
+            public string message { get; set; }
+        }
+
+        [HttpPost]
+        [Route("send")]
+        public async Task<IActionResult> createPost([FromBody]Message message)
+        {
+            if (string.IsNullOrEmpty(message.message_content))
+            {
+                return BadRequest("Error message");
+            }
+
+            post new_post = new post() { user_id = message.userID, content = message.message_content, delete_flag = 0, time = DateTime.Now };
+            _context.posts.Add(new_post);
+            await _context.SaveChangesAsync();
+
+            messageRes res = new messageRes() { message = "success" };
+            return Ok(ResultToJson.toJson(res));
         }
 
         // GET: api/posts

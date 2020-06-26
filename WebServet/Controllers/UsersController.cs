@@ -30,52 +30,58 @@ namespace WebServet.Controllers
             return await _context.user.ToListAsync();
         }
 
-        //public class LoginInfo
-        //{
-        //    public string name { get; set; }
-        //    public string password { get; set; }
-        //}
 
-        //public class LoginResponse
-        //{
-        //    public int code { get; set; }
-        //    public string message { get; set; }
-        //    public LoginInfo data { get; set; }
-        //}
-
-        //public class ResultToJson
-        //{
-        //    public static string toJson(object obj)
-        //    {
-        //        string str;
-        //        if (obj is string || obj is char)
-        //        {
-        //            str = obj.ToString();
-        //        }
-        //        else
-        //        {
-        //            JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //            str = serializer.Serialize(obj);
-        //        }
-        //        return str;
-        //    }
-        //}
-
-        // GET: api/Users/5
-
-        //[HttpGet("{user_id}")]
-        //[Route("getUserPublicInfo")]
-        //public async Task<IActionResult> getUserPublicInfo(int user_id)
-        //{
-        //    var user = await _context.user.FindAsync(user_id);
-
-        //    if (user == null)
-        //    {
-
-        //    }
+        public class UserPublicResponse
+        {
+            public int code { get; set; }
+            public string message { get; set; }
+            public UserPublicInfo data { get; set; }
+        }
 
 
-        //}
+        [HttpGet("getUserPublicInfo/{user_id}")]
+        public async Task<IActionResult> GetUserPublicInfo(int user_id)
+        {
+            UserPublicInfo userPublicInfo = new UserPublicInfo();
+            UserPublicResponse response;
+            userPublicInfo.userId = user_id;
+
+            var query =
+                from use in _context.user
+                where use.user_id == userPublicInfo.userId
+                select use;
+            var result = await query.AnyAsync();
+
+            if (result == false)
+            {
+                response = new UserPublicResponse() { code = 200, message = "fail", data = null };
+                return Ok(ResultToJson.toJson(response));
+            }
+            userPublicInfo.nickname = query.First().user_name;
+            userPublicInfo.portrait = query.First().portrait;
+
+            var query1 =
+                from po in _context.relation
+                where po.actor_id == userPublicInfo.userId
+                select po;
+            var result1 = await query1.AnyAsync();
+            int follows_num = 0;
+            foreach (var item in query1) { follows_num += 1; }
+            userPublicInfo.follows_num = follows_num;
+
+            var query2 =
+                from po in _context.relation
+                where po.object_id == userPublicInfo.userId
+                select po;
+            var result2 = await query2.AnyAsync();
+            int followers_num = 0;
+            foreach (var item in query2) { followers_num += 1; }
+            userPublicInfo.followers_num = followers_num;
+
+            response = new UserPublicResponse() { code = 200, message = "success", data = userPublicInfo };
+            return Ok(ResultToJson.toJson(response));
+        }
+
 
         [HttpPost]
         [Route("signIn")]
@@ -109,9 +115,12 @@ namespace WebServet.Controllers
                 return Ok(ResultToJson.toJson(response));
             }
 
-            response = new LoginResponse() { code = 200, message = "login success", data = loginInfo };
+            User user = query.First();
+            LoginInfo loginData = new LoginInfo() { user_id = user.user_id, name = user.user_name, password = user.password };
+            response = new LoginResponse() { code = 200, message = "login success", data = loginData };
             return Ok(ResultToJson.toJson(response));
         }
+
 
         [HttpPost]
         [Route("signUp")]
@@ -143,6 +152,7 @@ namespace WebServet.Controllers
             response = new LoginResponse() { code = 200, message = "your name is used", data = null };
             return Ok(ResultToJson.toJson(response));
         }
+
 
         // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -176,6 +186,7 @@ namespace WebServet.Controllers
             return NoContent();
         }
 
+
         // POST: api/Users
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -187,6 +198,7 @@ namespace WebServet.Controllers
 
             return CreatedAtAction("GetUser", new { id = user.user_id }, user);
         }
+
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

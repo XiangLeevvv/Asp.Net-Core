@@ -41,6 +41,7 @@ function getUserPublicInfo(user_id) {
   if (!checkNumber(user_id)) {
     return null;
   }
+  console.log(user_id)
   return get("api/Users/getUserPublicInfo/" + user_id);
 }
 
@@ -67,7 +68,7 @@ function search(searchKey, startFrom, limitation) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //RELATION
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
-var RELATION = "api/Relation/";
+var RELATION = "api/relations/";
 //followSb(user_id)
 function followSb(user_id, data) {
   if (!checkNumber(user_id)) {
@@ -83,10 +84,11 @@ function queryFollowingFor(user_id, startFrom, limitation) {
   }
 
   var data = {
+    userId: user_id,
     startFrom: startFrom,
     limitation: limitation
   }
-  return post(RELATION + "queryFollowingFor/" + user_id, data);
+  return post(RELATION + "queryFollowingFor/", data);
 }
 //queryFollowersFor(user_id, startFrom, limitation)
 function queryFollowersFor(user_id, startFrom, limitation) {
@@ -95,10 +97,11 @@ function queryFollowersFor(user_id, startFrom, limitation) {
   }
 
   var data = {
+    userId: user_id,
     startFrom: startFrom,
     limitation: limitation
   }
-  return post(RELATION + "queryFollowersFor/" + user_id, data);
+  return post(RELATION + "queryFollowersFor/", data);
 }
 //cancelFollowingTo(user_id)
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
@@ -161,7 +164,7 @@ function checkUserLikesMessage(data) {
 }
 ///////////////////////////////////////////////////////////////////////////////
 //MESSAGE推特
-var MESSAGE = "api/Message/";
+var MESSAGE = "api/posts/";
 //queryMessage(message_id)
 function queryMessage(message_id) {
   if (!checkNumber(message_id)) {
@@ -203,7 +206,7 @@ function queryFollowMessage(startFrom, limitation, userID) {
 //sendMessage(formData: {message_content, message_has_image, message_image_count, files})
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function sendMessage(formData) {
-  return post(MESSAGE + "send", formData);
+  return post("api/posts/send", formData);
 }
 //deleteMessage(message_id)
 function deleteMessage(message_id) {
