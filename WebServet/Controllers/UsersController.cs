@@ -7,6 +7,7 @@ using WebServet.Models;
 using COMLib;
 using localLib;
 using CLRDll;
+using ClassLibrary;
 
 
 namespace WebServet.Controllers
@@ -29,25 +30,18 @@ namespace WebServet.Controllers
             return await _context.user.ToListAsync();
         }
 
-        public class LoginInfo
-        {
-            public string name { get; set; }
-            public string password { get; set; }
-        }
+        //public class LoginInfo
+        //{
+        //    public string name { get; set; }
+        //    public string password { get; set; }
+        //}
 
-        public class LoginResponse
-        {
-            public int code { get; set; }
-            public string message { get; set; }
-            public LoginInfo data { get; set; }
-        }
-
-        public class UserInfo
-        {
-            public int user_id { get; set; }
-            public string nickname { get; set; }
-            public string avatar_url { get; set; }
-        }
+        //public class LoginResponse
+        //{
+        //    public int code { get; set; }
+        //    public string message { get; set; }
+        //    public LoginInfo data { get; set; }
+        //}
 
         //public class ResultToJson
         //{

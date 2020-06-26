@@ -48,6 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="ClassLibrary">
+      <HintPath>..\..\..\.Net_户县锋2020\期末项目\ClassLibrary\bin\Debug\netstandard2.0\ClassLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="CLRDll">
       <HintPath>..\..\..\.Net_户县锋2020\期末项目\CLRDll\Debug\CLRDll.dll</HintPath>
     </Reference>
