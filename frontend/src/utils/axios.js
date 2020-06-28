@@ -68,14 +68,14 @@ function search(searchKey, startFrom, limitation) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //RELATION
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
-var RELATION = "api/Relation/";
+var RELATION = "api/relations/";
 //followSb(user_id)
 function followSb(user_id, data) {
   if (!checkNumber(user_id)) {
     console.log("followSb")
     return null;
   }
-  return post(RELATION + "follow/" + user_id, data);
+  return post(RELATION + "followSb/" + user_id, data);
 }
 //queryFollowingFor(user_id, startFrom, limitation)
 function queryFollowingFor(user_id, startFrom, limitation) {

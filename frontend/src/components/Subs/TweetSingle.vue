@@ -339,7 +339,7 @@ export default {
     //   this.collectByUser = Response.data.data.favor;
     // });
     var data={
-      userID: this.userID
+      userID: parseInt(this.userID)
     }
     axios.if_following_by_me(this.item.message_sender_user_id, data).then(Response => {
       this.followByUser = Response.data.data.if_following;

@@ -3,10 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Nancy.Json;
 using WebServet.Models;
-using localLib;
 using COMLib;
+using localLib;
+using CLRDll;
+using ClassLibrary;
+
 
 namespace WebServet.Controllers
 {
@@ -21,6 +23,13 @@ namespace WebServet.Controllers
             _context = context;
         }
 
+        public class UserPublicResponse
+        {
+            public int code { get; set; }
+            public string message { get; set; }
+            public UserPublicInfo data { get; set; }
+        }
+
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Getuser()
@@ -28,69 +37,61 @@ namespace WebServet.Controllers
             return await _context.user.ToListAsync();
         }
 
-        public class LoginInfo
+        [HttpGet("getUserPublicInfo/{user_id}")]
+        public async Task<IActionResult> GetUserPublicInfo(int user_id)
         {
-            public string name { get; set; }
-            public string password { get; set; }
+            UserPublicInfo userPublicInfo = new UserPublicInfo();
+            UserPublicResponse response;
+            userPublicInfo.userId = user_id;
+
+            var query =
+                from use in _context.user
+                where use.user_id == userPublicInfo.userId
+                select use;
+            var result = await query.AnyAsync();
+
+            if (result == false)
+            {
+                response = new UserPublicResponse() { code = 200, message = "fail", data = null };
+                return Ok(ResultToJson.toJson(response));
+            }
+            userPublicInfo.nickname = query.First().user_name;
+            userPublicInfo.portrait = query.First().portrait;
+
+            var query1 =
+                from po in _context.relation
+                where po.actor_id == userPublicInfo.userId
+                select po;
+            var result1 = await query1.AnyAsync();
+            int follows_num = 0;
+            foreach (var item in query1) { follows_num += 1; }
+            userPublicInfo.follows_num = follows_num;
+
+            var query2 =
+                from po in _context.relation
+                where po.object_id == userPublicInfo.userId
+                select po;
+            var result2 = await query2.AnyAsync();
+            int followers_num = 0;
+            foreach (var item in query2) { followers_num += 1; }
+            userPublicInfo.followers_num = followers_num;
+
+            var query3 =
+                from po in _context.posts
+                where po.user_id == user_id
+                select po;
+            var result3 = await query3.AnyAsync();
+            userPublicInfo.messages_num = query3.Count();
+
+            response = new UserPublicResponse() { code = 200, message = "success", data = userPublicInfo };
+            return Ok(ResultToJson.toJson(response));
         }
-
-        public class LoginResponse
-        {
-            public int code { get; set; }
-            public string message { get; set; }
-            public LoginInfo data { get; set; }
-        }
-
-        public class UserInfo
-        {
-            public int user_id { get; set; }
-            public string nickname { get; set; }
-            public string avatar_url { get; set; }
-        }
-
-        //public class ResultToJson
-        //{
-        //    public static string toJson(object obj)
-        //    {
-        //        string str;
-        //        if (obj is string || obj is char)
-        //        {
-        //            str = obj.ToString();
-        //        }
-        //        else
-        //        {
-        //            JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //            str = serializer.Serialize(obj);
-        //        }
-        //        return str;
-        //    }
-        //}
-
-        // GET: api/Users/5
-
-        //[HttpGet("{user_id}")]
-        //[Route("getUserPublicInfo")]
-        //public async Task<IActionResult> getUserPublicInfo(int user_id)
-        //{
-        //    var user = await _context.user.FindAsync(user_id);
-
-        //    if (user == null)
-        //    {
-                
-        //    }
-
-
-        //}
 
         [HttpPost]
         [Route("signIn")]
         public async Task<IActionResult> SignIn([FromBody]LoginInfo loginInfo)
         {
             LoginResponse response;
-
-            MyComClass f = new MyComClass();
-            System.Diagnostics.Debug.WriteLine(f.Add(1,2));
-            
 
             if (string.IsNullOrEmpty(loginInfo.name) || string.IsNullOrEmpty(loginInfo.password))
             {
@@ -104,6 +105,7 @@ namespace WebServet.Controllers
                 select use;
 
             var result = await query.AnyAsync();
+            loginInfo.user_id = query.First().user_id;
 
             if (result == false)
             {
@@ -114,6 +116,7 @@ namespace WebServet.Controllers
             response = new LoginResponse() { code = 200, message = "login success", data = loginInfo };
             return Ok(ResultToJson.toJson(response));
         }
+
 
         [HttpPost]
         [Route("signUp")]

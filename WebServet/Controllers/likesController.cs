@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebServet.Models;
+using CommentAndLike;
+using localLib;
+using MySqlX.XDevAPI.Common;
 
 namespace WebServet.Controllers
 {
@@ -18,6 +21,91 @@ namespace WebServet.Controllers
         public likesController(UserContext context)
         {
             _context = context;
+        }
+
+        [HttpPost]
+        [Route("countLike")]
+        public async Task<ActionResult> countLike([FromBody] likeInfo likeInfo)
+        {
+            if (string.IsNullOrEmpty(likeInfo.userID.ToString()) || string.IsNullOrEmpty(likeInfo.messageID.ToString()))
+            {
+                return BadRequest("You must submit username and password");
+            }
+
+            var query = from like in _context.likes
+                        where like.post_id == likeInfo.messageID
+                        select like;
+
+            var num = await query.CountAsync();
+
+            likeRes res = new likeRes() { message = "success", Count = num };
+            return Ok(ResultToJson.toJson(res));
+        }
+
+        [HttpPost]
+        [Route("isLike")]
+        public async Task<ActionResult> isLike([FromBody] likeInfo likeInfo)
+        {
+            if (string.IsNullOrEmpty(likeInfo.userID.ToString()) || string.IsNullOrEmpty(likeInfo.messageID.ToString()))
+            {
+                return BadRequest("You must submit username and password");
+            }
+
+            likeRes res;
+
+            var query = from like in _context.likes
+                        where like.post_id == likeInfo.messageID && like.user_id == likeInfo.userID
+                        select like;
+
+            var result = await query.AnyAsync();
+
+            if(result == false)
+            {
+                res = new likeRes() { message = "not"};
+                return Ok(ResultToJson.toJson(res));
+            }
+
+            res = new likeRes() { message = "like" };
+            return Ok(ResultToJson.toJson(res));
+        }
+
+        [HttpPost]
+        [Route("iLike")]
+        public async Task<ActionResult> iLike([FromBody] likeInfo likeInfo)
+        {
+            if (string.IsNullOrEmpty(likeInfo.userID.ToString()) || string.IsNullOrEmpty(likeInfo.messageID.ToString()))
+            {
+                return BadRequest("You must submit username and password");
+            }
+
+            likeRes res;
+
+            likes new_like = new likes() { user_id = likeInfo.userID, post_id = likeInfo.messageID };
+            _context.likes.Add(new_like);
+            await _context.SaveChangesAsync();
+            res = new likeRes() { message = "success" };
+            return Ok(ResultToJson.toJson(res));
+        }
+
+        [HttpPost]
+        [Route("cancel")]
+        public async Task<ActionResult> cancel([FromBody] likeInfo likeInfo)
+        {
+            if (string.IsNullOrEmpty(likeInfo.userID.ToString()) || string.IsNullOrEmpty(likeInfo.messageID.ToString()))
+            {
+                return BadRequest("You must submit username and password");
+            }
+
+            var query = from like in _context.likes
+                        where like.post_id == likeInfo.messageID && like.user_id == likeInfo.userID
+                        select like;
+
+            var result = await query.FirstAsync();
+            _context.likes.Remove(result);
+            await _context.SaveChangesAsync();
+
+            likeRes res = new likeRes() { message = "success" };
+            return Ok(ResultToJson.toJson(res));
         }
 
         // GET: api/likes

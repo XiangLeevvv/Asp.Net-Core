@@ -54,9 +54,9 @@ export default {
       this.$emit("update:followerCount", this.followerCount - 1);
       console.log("取消关注");
       var data = {
-        userID: this.userID
+        userID: parseInt(this.userID)
       }
-      this.cancelFollowingTo(this.visitor, data).then(response => {
+      axios.cancelFollowingTo(this.visitor, data).then(response => {
         if (response.data.message != "success") {
           this.$emit("update:isFollowing", true);
           this.$emit("update:followerCount", this.followerCount + 1);
@@ -72,7 +72,7 @@ export default {
       this.$emit("update:followerCount", this.followerCount + 1);
       console.log("follow谁：", this.visitor);
       var data = {
-        userID: this.userID
+        userID: parseInt(this.userID)
       }
       axios.followSb(this.visitor, data).then(response => {
         console.log("follow结果", response);

@@ -73,24 +73,24 @@
               v-bind:info="visitor"
             ></tweets>
         </TabPane>
-        <TabPane label="我关注的人">
-          <div v-for="user in followingList" v-bind:key="user.user_id">
-              <userForZoom
-                v-bind:p_user_id="user.user_id"
-                :ref="'following'+user.user_id"
-                @change_my_follow="change_my_follow(arguments)"
-              ></userForZoom>
-            </div>
-        </TabPane>
-        <TabPane label="关注我的人">
-          <div v-for="user in followersList" v-bind:key="user.user_id">
-              <userForZoom
-                v-bind:p_user_id="user.user_id"
-                :ref="'follower'+user.user_id"
-                @change_my_follow="change_my_follow(arguments)"
-              ></userForZoom>
-          </div>
-        </TabPane>
+<!--        <TabPane label="我关注的人">-->
+<!--          <div v-for="user in followingList" v-bind:key="user.user_id">-->
+<!--              <userForZoom-->
+<!--                v-bind:p_user_id="user.user_id"-->
+<!--                :ref="'following'+user.user_id"-->
+<!--                @change_my_follow="change_my_follow(arguments)"-->
+<!--              ></userForZoom>-->
+<!--            </div>-->
+<!--        </TabPane>-->
+<!--        <TabPane label="关注我的人">-->
+<!--          <div v-for="user in followersList" v-bind:key="user.user_id">-->
+<!--              <userForZoom-->
+<!--                v-bind:p_user_id="user.user_id"-->
+<!--                :ref="'follower'+user.user_id"-->
+<!--                @change_my_follow="change_my_follow(arguments)"-->
+<!--              ></userForZoom>-->
+<!--          </div>-->
+<!--        </TabPane>-->
     </Tabs>
     <backToTop></backToTop>
   </div>

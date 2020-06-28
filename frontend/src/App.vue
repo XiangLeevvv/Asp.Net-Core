@@ -15,10 +15,10 @@
             <div class="over"><Icon type="ios-eye-outline" class="menuIcon"></Icon>
             <span class="menuWords">发现</span></div>
           </MenuItem>
-          <MenuItem name="experiment" router-link="{path: '/experiment'}" style="width:10%" key="Experiment">
-            <div class="over"><Icon type="ios-help-outline" class="menuIcon"></Icon>
-            <span class="menuWords">实验</span></div>
-          </MenuItem>
+<!--          <MenuItem name="experiment" router-link="{path: '/experiment'}" style="width:10%" key="Experiment">-->
+<!--            <div class="over"><Icon type="ios-help-outline" class="menuIcon"></Icon>-->
+<!--            <span class="menuWords">实验</span></div>-->
+<!--          </MenuItem>-->
           <Button shape="circle" @click="handleSearch" icon="ios-search" style="border:0; margin-left:25%;"></Button>
           <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="在所有内容中查找" style="width: 25%;"></Input>
           <!-- <Button type="primary" style="float:right;margin-top:15px;" @click = "signOut">LOG OUT</Button> -->

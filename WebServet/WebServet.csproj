@@ -10,16 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <COMReference Include="ATLLib.dll">
-      <Guid>fed8c924-6a95-4a61-bf8d-f552e4d7a7fb</Guid>
+    <COMReference Include="COMLib.dll">
+      <Guid>294150c6-c0ea-4ded-b987-4ed865d60eda</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>false</Isolated>
     </COMReference>
-    <COMReference Include="COMLib.dll">
-      <Guid>294150c6-c0ea-4ded-b987-4ed865d60eda</Guid>
+    <COMReference Include="ATLLib.dll">
+      <Guid>fed8c924-6a95-4a61-bf8d-f552e4d7a7fb</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Brandleespackage" Version="1.0.0" />
+    <PackageReference Include="localLib" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.5" />
@@ -48,8 +48,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="localLib">
-      <HintPath>..\localLib\bin\Debug\netstandard2.0\localLib.dll</HintPath>
+    <Reference Include="ClassLibrary">
+      <HintPath>..\..\..\.Net_户县锋2020\期末项目\ClassLibrary\bin\Debug\netstandard2.0\ClassLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ClassLibraryPost">
+      <HintPath>..\..\..\.Net_户县锋2020\期末项目\ClassLibraryPost\bin\Debug\netstandard2.0\ClassLibraryPost.dll</HintPath>
+    </Reference>
+    <Reference Include="CLRDll">
+      <HintPath>..\..\..\.Net_户县锋2020\期末项目\CLRDll\Debug\CLRDll.dll</HintPath>
+    </Reference>
+    <Reference Include="CommentAndLike">
+      <HintPath>..\..\..\..\source\repos\CommentAndLike\bin\Debug\netstandard2.0\CommentAndLike.dll</HintPath>
     </Reference>
   </ItemGroup>
 

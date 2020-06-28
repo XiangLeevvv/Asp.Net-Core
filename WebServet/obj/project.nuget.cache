@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Y0jiBxR68PXmj7o1rBO8ComXtp5iwNxfpvoU2cESRpDKHhOR2gWxRtXGJytNjSWxdq1cYM3+rpOsXtLMUSES4w==",
+  "dgSpecHash": "aZW1p0emStzEp0vYhVZEfg5jYVft3/WCAoUlS+21z7youaSlu1ire3dK5ykT0Ip/5k6OhYGnvwdb63/B3eRQMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\82621\\Desktop\\.net\\Asp.Net-Core\\WebServet\\WebServet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\82621\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
-    "C:\\Users\\82621\\.nuget\\packages\\brandleespackage\\1.0.0\\brandleespackage.1.0.0.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\google.protobuf\\3.6.1\\google.protobuf.3.6.1.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
+    "C:\\Users\\82621\\.nuget\\packages\\locallib\\1.1.1\\locallib.1.1.1.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
     "C:\\Users\\82621\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
@@ -203,6 +203,16 @@
     "C:\\Users\\82621\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“.NETCoreApp,Version=v3.1”还原包“localLib 1.1.1”。此包可能与项目不完全兼容。",
+      "libraryId": "localLib",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",
